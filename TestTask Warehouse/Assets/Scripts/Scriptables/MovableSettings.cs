@@ -1,7 +1,7 @@
 using UnityEngine;
 
-[CreateAssetMenu (fileName = "MovableStats", menuName = "Scriptables/Stats/MovableStats")]
-public class MovableStats : ScriptableObject
+[CreateAssetMenu (fileName = "MovableSettings", menuName = "Scriptables/Stats/MovableSettings")]
+public class MovableSettings : ScriptableObject
 {
     [SerializeField] private float _hookSpeed;
     [SerializeField] private float _trolleySpeed;

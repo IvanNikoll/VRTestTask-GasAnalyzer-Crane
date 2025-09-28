@@ -20,7 +20,7 @@ public class CraneController : MonoBehaviour
     private float _beamMaxPos;
     private float _beamMinPos;
 
-    public void InitializeCrane(RemoteController remoteController, MovableStats settings)
+    public void InitializeCrane(RemoteController remoteController, MovableSettings settings)
     {
         _remoteController = remoteController;
         _hookSpeed = settings.HookSpeed;
