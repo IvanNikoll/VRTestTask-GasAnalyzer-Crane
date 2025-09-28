@@ -17,4 +17,6 @@ MonoBehaviour:
   _craneControllerPosition: {x: 5, y: -4, z: 3.4}
   _gasAnalyzerPosition: {x: 4.3, y: -4.3, z: 3}
   _probePosition: {x: 3, y: -4, z: 3}
-  _dangerObjectposition: {x: 4.5, y: -5.74, z: -8}
+  _dangerObjectposition:
+  - {x: 4.5, y: -5.74, z: -8}
+  - {x: 0, y: -5.74, z: 8}

@@ -82,7 +82,28 @@ public class GazAnalyzer : MonoBehaviour
         {
             string content = $"{_currentDistance:F2} m";
             _view.Show(content);
+            IndicateDanger(_currentDistance);
         }
+    }
+
+    private void IndicateDanger(float distance)
+    {
+        if(distance <= 10)
+        {
+            _view.Zone1Indicator.SetActive(true);
+            _view.Zone2Indicator.SetActive(false);
+            _view.Zone3Indicator.SetActive(false);
+            if(distance <= 5)
+                _view.Zone2Indicator.SetActive(true);
+                _view.Zone3Indicator.SetActive(false);
+                if (distance <= 2)
+                    _view.Zone3Indicator.SetActive(true);
+            return;
+        }
+
+        _view.Zone1Indicator.SetActive(false);
+        _view.Zone2Indicator.SetActive(false);
+        _view.Zone3Indicator.SetActive(false);
     }
 
     private void Subscribe()

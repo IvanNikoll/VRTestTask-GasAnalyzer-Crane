@@ -3,6 +3,8 @@ using System;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
+using System.Runtime.CompilerServices;
+using System.Collections.Generic;
 
 
 public class LevelBootstrap : MonoBehaviour
@@ -22,10 +24,21 @@ public class LevelBootstrap : MonoBehaviour
     {
         await Spawn(_warehousePrefab, _levelSettings.WarehousePosition);
         await Task.Yield();
-        await Spawn(_dangerObjectPrefab, _levelSettings.DangerObjectPosition);
+        SpawnDangerObjects();
         await SpawnCraneAndController();
         await SpawnAnalyzer();
         
+    }
+
+    private async void SpawnDangerObjects()
+    {
+        var tasks = new List<Task>();
+        foreach (var pos in _levelSettings.DangerObjectPosition)
+        {
+            tasks.Add(Spawn(_dangerObjectPrefab, pos));
+        }
+
+        await Task.WhenAll(tasks);
     }
 
     private async Task SpawnAnalyzer()
