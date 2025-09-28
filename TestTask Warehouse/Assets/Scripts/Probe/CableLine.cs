@@ -2,34 +2,32 @@
 
 public class CableLine : MonoBehaviour
 {
-    [SerializeField] private Transform startPoint;
-    [SerializeField] private Transform endPoint;
-    [SerializeField] private Transform _floor;
+    [SerializeField] private Transform _startPoint;
+    [SerializeField] private Transform _endPoint;
     [SerializeField] private int segments = 10;
-    [SerializeField] private float sagAmount = 0.002f;
+    [SerializeField] private float sagAmount = 1;
 
     private LineRenderer line;
 
-    void Awake()
+    public void Initialize(Transform startPoint, Transform endPoint)
     {
         line = GetComponent<LineRenderer>();
         line.positionCount = segments;
+        _endPoint = endPoint;
+        _startPoint = startPoint;
     }
 
     void LateUpdate()
     {
-        if (!startPoint || !endPoint) return;
+        if (!_startPoint || !_endPoint) return;
 
         for (int i = 0; i < segments; i++)
         {
             float t = i / (float)(segments - 1);
-            Vector3 pointPos = Vector3.Lerp(startPoint.position, endPoint.position, t);
+            Vector3 pointPos = Vector3.Lerp(_startPoint.position, _endPoint.position, t);
 
             float sag = Mathf.Sin(Mathf.PI * t) * sagAmount;
             pointPos.y -= sag;
-
-            if (pointPos.y < _floor.position.y)
-                pointPos.y = _floor.position.y;
 
             line.SetPosition(i, pointPos);
         }

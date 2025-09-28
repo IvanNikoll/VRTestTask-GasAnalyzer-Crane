@@ -45,11 +45,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d88fea80ebd2754890b98f47e165f09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startPoint: {fileID: 0}
-  endPoint: {fileID: 0}
-  _floor: {fileID: 0}
+  _startPoint: {fileID: 0}
+  _endPoint: {fileID: 0}
   segments: 100
-  sagAmount: 10
+  sagAmount: 1
 --- !u!120 &4545767996418878693
 LineRenderer:
   serializedVersion: 2

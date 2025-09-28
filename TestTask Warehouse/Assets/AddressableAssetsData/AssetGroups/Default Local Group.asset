@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: 
+  m_GroupName: Default Local Group
+  m_GUID: c7261ea585da10443a3cc6a5c7e5b469
+  m_SerializeEntries:
+  - m_GUID: 0398a35500707204f82bec7cef98d12e
+    m_Address: Prefabs/GazAnalyzer
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4fe284254bfba5d488b84d4a98989ce6
+    m_Address: Prefabs/DangerObject
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 67556739f9c598c429f80a431f3564b8
+    m_Address: Prefabs/Probe
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 76b857ef666485e438751e19e497a9a1
+    m_Address: Prefabs/Remote_Controller
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c0b6d0b66270ab2499b5155e42e06ce5
+    m_Address: Prefabs/Beam
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c834aaf03eb11af4d9cc08d6c7c56841
+    m_Address: Prefabs/Wire
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cd67725066b150748a3da8a67a6ed2b4
+    m_Address: Prefabs/Hangar_UV2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: d0f8c73b667c25b409e97a832d579857, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: eadd5345da9a4574d99c7a9237cd04e6, type: 2}
+    - {fileID: 11400000, guid: 3b0d0575a09a4144eb5cbba1760516e0, type: 2}

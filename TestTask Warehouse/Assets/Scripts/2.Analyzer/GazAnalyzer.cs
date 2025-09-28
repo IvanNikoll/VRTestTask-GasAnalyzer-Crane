@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class GazAnalyzer : MonoBehaviour
 {
+    [SerializeField] private GameObject _socket;
+    public GameObject Socket {  get { return _socket; } }
+
     private GazAnalyzerView _view;
     private GameObject _screen;
     private Canvas _screenCanvas;
@@ -95,7 +98,8 @@ public class GazAnalyzer : MonoBehaviour
 
     private void OnDestroy()
     {
-        _view.PowerButtonPressed -= OnPowerPressed;
+        if (_view != null)
+            _view.PowerButtonPressed -= OnPowerPressed;
     }
 
     private IEnumerator PowerCoroutine()
