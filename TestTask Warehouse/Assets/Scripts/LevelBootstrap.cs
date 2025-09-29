@@ -19,6 +19,7 @@ public class LevelBootstrap : MonoBehaviour
     [SerializeField] private AssetReference _wirePrefab;
     [SerializeField] private AssetReference _warehousePrefab;
     [SerializeField] private AssetReference _dangerObjectPrefab;
+    private AnalyzerAudioController _analizerAudioController;
 
     private async void Start()
     {
@@ -47,12 +48,14 @@ public class LevelBootstrap : MonoBehaviour
         GazAnalyzerView gasAnalyzer = gasAnalyzerObjObj.GetComponent<GazAnalyzerView>();
         if (gasAnalyzer == null)
             throw new Exception(nameof(gasAnalyzer));
+        _analizerAudioController = gasAnalyzerObjObj.GetComponent<AnalyzerAudioController>();
+        if (_analizerAudioController == null) throw new Exception(nameof(_analizerAudioController));
 
         GameObject probeObj = await Spawn(_probePrefab, _levelSettings.ProbePosition);
         GazAnalyzer probe = probeObj.GetComponent<GazAnalyzer>();
         if (probe == null) throw new Exception(nameof(probe));
         probe.InitializeAnalyzer(gasAnalyzer, _gazAnalyzerSettings);
-
+        _analizerAudioController.InitializeAnalyzerAudioController(probe);
         GameObject wireObj = await Spawn(_wirePrefab, Vector3.zero);
         CableLine cableLine = wireObj.GetComponent<CableLine>();
         if (cableLine == null) throw new Exception(nameof(cableLine));

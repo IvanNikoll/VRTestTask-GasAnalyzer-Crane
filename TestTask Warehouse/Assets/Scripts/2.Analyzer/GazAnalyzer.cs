@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,10 @@ using UnityEngine;
 public class GazAnalyzer : MonoBehaviour
 {
     [SerializeField] private GameObject _socket;
+
+    public event Action OnZoneEnter;
+    public event Action OnZoneExit;
+
     public GameObject Socket {  get { return _socket; } }
 
     private GazAnalyzerView _view;
@@ -90,6 +95,7 @@ public class GazAnalyzer : MonoBehaviour
     {
         if(distance <= 10)
         {
+            OnZoneEnter?.Invoke();
             _view.Zone1Indicator.SetActive(true);
             _view.Zone2Indicator.SetActive(false);
             _view.Zone3Indicator.SetActive(false);
@@ -101,6 +107,7 @@ public class GazAnalyzer : MonoBehaviour
             return;
         }
 
+        OnZoneExit?.Invoke();
         _view.Zone1Indicator.SetActive(false);
         _view.Zone2Indicator.SetActive(false);
         _view.Zone3Indicator.SetActive(false);

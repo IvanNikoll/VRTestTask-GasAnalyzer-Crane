@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -6,7 +7,10 @@ public class CraneController : MonoBehaviour
     [SerializeField] private GameObject _beam;
     [SerializeField] private GameObject _trolley;
     [SerializeField] private GameObject _hook;
-    
+
+    public event Action<CraneEngineTypes> Operating;
+    public event Action StopOperating;
+
     private RemoteController _remoteController;
     private Coroutine _currentRoutine;
 
@@ -88,12 +92,13 @@ public class CraneController : MonoBehaviour
                 break;
             if (direction == Vector3.down && axisPos <= _hookMinpos)
                 break;
-
+            Operating?.Invoke(CraneEngineTypes.Hook);
             _hook.transform.Translate(direction * Time.deltaTime * _hookSpeed);
             yield return null;
 
         }
 
+        StopOperating?.Invoke();
         _currentRoutine = null;
     }
 
@@ -107,29 +112,32 @@ public class CraneController : MonoBehaviour
                 break;
             if (direction == Vector3.left && axisPos <= _trolleyMinPos)
                 break;
-
+            Operating?.Invoke(CraneEngineTypes.Trolley);
             _trolley.transform.Translate(direction * Time.deltaTime * _trolleySpeed);
             yield return null;
 
         }
 
+        StopOperating?.Invoke();
         _currentRoutine = null;
     }
     private IEnumerator MoveBeam(Vector3 direction)
     {
         while (_remoteController.IsPressed)
         {
+
             float axisPos = _beam.transform.position.z;
             if (direction == Vector3.forward && axisPos >= _beamMaxPos)
                 break;
             if (direction == Vector3.back && axisPos <= _beamMinPos)
                 break;
-
+            Operating?.Invoke(CraneEngineTypes.Beam);
             _beam.transform.Translate(direction * Time.deltaTime * _beamSpeed);
             yield return null;
 
         }
 
+        StopOperating?.Invoke();
         _currentRoutine = null;
     }
 }
