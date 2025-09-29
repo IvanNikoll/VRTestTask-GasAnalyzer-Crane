@@ -14,6 +14,12 @@ public class AnalyzerAudioController : MonoBehaviour
         Subscribe();
     }
 
+    public void FixedUpdate()
+    {
+        if (_controller!= null && !_controller._IsOn && _isPlayingAudio)
+            StopAudio();
+    }
+
     private void Subscribe()
     {
         _controller.OnZoneEnter += HandleOperating;

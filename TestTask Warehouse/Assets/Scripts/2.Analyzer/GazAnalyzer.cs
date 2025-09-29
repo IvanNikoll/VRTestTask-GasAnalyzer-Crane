@@ -11,6 +11,7 @@ public class GazAnalyzer : MonoBehaviour
     public event Action OnZoneExit;
 
     public GameObject Socket {  get { return _socket; } }
+    public bool _IsOn { get; private set; }
 
     private GazAnalyzerView _view;
     private GameObject _screen;
@@ -22,7 +23,6 @@ public class GazAnalyzer : MonoBehaviour
     private float _powerDelayInterval;
     private float _currentDistance;
     private float _fadeDuration = 0.5f;
-    private bool _isOn;
 
     private Color _onColor;
     private Color _offColor;
@@ -42,7 +42,7 @@ public class GazAnalyzer : MonoBehaviour
 
     public void Update()
     {
-        if (_isOn)
+        if (_IsOn)
             UpdateDangerZoneDistance();
     }
 
@@ -142,9 +142,8 @@ public class GazAnalyzer : MonoBehaviour
 
         if (time >= _powerDelayInterval)
         {
-            _isOn = !_isOn;
-            StartCoroutine(ScreenCoroutine(_isOn));
-            Debug.Log(_isOn ? "Power ON" : "Power OFF");
+            _IsOn = !_IsOn;
+            StartCoroutine(ScreenCoroutine(_IsOn));
         }
 
         _powerCoroutine = null;
