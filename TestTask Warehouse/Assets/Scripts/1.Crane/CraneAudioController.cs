@@ -31,7 +31,7 @@ public class CraneAudioController : MonoBehaviour
         _isPlayingAudio = false;
     }
 
-    private void HandleOperating(CraneEngineTypes types)
+    private void HandleOperating(CraneEngineTypes types, Vector3 direction)
     {
         if (!_isPlayingAudio)
         {
@@ -58,4 +58,11 @@ public class CraneAudioController : MonoBehaviour
         }
 
     }
+
+    private void OnDestroy()
+    {
+        _controller.Operating -= HandleOperating;
+        _controller.StopOperating -= StopAudio;
+    }
+
 }

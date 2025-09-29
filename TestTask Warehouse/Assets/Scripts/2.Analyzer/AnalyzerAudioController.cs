@@ -38,4 +38,11 @@ public class AnalyzerAudioController : MonoBehaviour
         }
 
     }
+
+    private void OnDestroy()
+    {
+        _controller.OnZoneEnter -= HandleOperating;
+        _controller.OnZoneExit -= StopAudio;
+    }
+
 }

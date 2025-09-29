@@ -8,7 +8,7 @@ public class CraneController : MonoBehaviour
     [SerializeField] private GameObject _trolley;
     [SerializeField] private GameObject _hook;
 
-    public event Action<CraneEngineTypes> Operating;
+    public event Action<CraneEngineTypes, Vector3> Operating;
     public event Action StopOperating;
 
     private RemoteController _remoteController;
@@ -92,7 +92,7 @@ public class CraneController : MonoBehaviour
                 break;
             if (direction == Vector3.down && axisPos <= _hookMinpos)
                 break;
-            Operating?.Invoke(CraneEngineTypes.Hook);
+            Operating?.Invoke(CraneEngineTypes.Hook, direction);
             _hook.transform.Translate(direction * Time.deltaTime * _hookSpeed);
             yield return null;
 
@@ -112,7 +112,7 @@ public class CraneController : MonoBehaviour
                 break;
             if (direction == Vector3.left && axisPos <= _trolleyMinPos)
                 break;
-            Operating?.Invoke(CraneEngineTypes.Trolley);
+            Operating?.Invoke(CraneEngineTypes.Trolley, direction);
             _trolley.transform.Translate(direction * Time.deltaTime * _trolleySpeed);
             yield return null;
 
@@ -131,7 +131,7 @@ public class CraneController : MonoBehaviour
                 break;
             if (direction == Vector3.back && axisPos <= _beamMinPos)
                 break;
-            Operating?.Invoke(CraneEngineTypes.Beam);
+            Operating?.Invoke(CraneEngineTypes.Beam, direction);
             _beam.transform.Translate(direction * Time.deltaTime * _beamSpeed);
             yield return null;
 
