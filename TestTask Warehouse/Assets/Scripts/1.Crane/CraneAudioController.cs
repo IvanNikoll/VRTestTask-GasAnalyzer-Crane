@@ -26,7 +26,9 @@ public class CraneAudioController : MonoBehaviour
 
     private void StopAudio()
     {
-        _activesource.Stop();
+        if(_activesource != null)
+            _activesource.Stop();
+        
         _activesource = null;
         _isPlayingAudio = false;
     }
